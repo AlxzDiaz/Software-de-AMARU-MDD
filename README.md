@@ -47,9 +47,27 @@ tests/            Pruebas de integración y E2E
 - **Docker Desktop**, recomendado para PostgreSQL, Mailpit y MinIO. Alternativa: PostgreSQL 16 instalado localmente.
 - Git.
 
-## Puesta en marcha
+## Lo que ya funciona: núcleo de reservas (`packages/shared`)
 
-> Los comandos estarán disponibles al terminar el Sprint 1.
+La primera funcionalidad está especificada con SDD en [`.kiro/specs/reservas-cupos-cancelacion/`](.kiro/specs/reservas-cupos-cancelacion/) (`requirements.md` → `design.md` → `tasks.md`) e implementada en `packages/shared`. Cubre cupos, bloqueo temporal, confirmación de pago, liberación de bloqueos vencidos, política de cancelación y reembolsos (RN-06, RN-07, RN-08).
+
+```bash
+npm install
+```
+
+```bash
+npm run typecheck
+```
+
+```bash
+npm run test:coverage
+```
+
+Resultado esperado: 199 pruebas en verde y 100 % de cobertura de líneas, ramas y funciones. Si la cobertura baja del 100 %, el comando falla. El reporte HTML queda en `packages/shared/coverage/index.html`.
+
+## Puesta en marcha de la aplicación completa
+
+> Estos comandos estarán disponibles al terminar el Sprint 1.
 
 ```bash
 cp .env.example .env

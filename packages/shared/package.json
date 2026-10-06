@@ -1,0 +1,20 @@
+{
+  "name": "@amaru/shared",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Reglas de negocio puras, estados y puertos compartidos de AMARU-MDD",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^5.0.3",
+    "fast-check": "^4.10.2",
+    "vitest": "^5.0.3"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "9.1 Extraer `obtenerReservaAutorizada` y `asegurarCancelable` a `casos-de-uso/comun.ts` y hacer que `CancelarReserva` las use": [
+      {
+        "executionId": "71e6ea4f-762f-44ce-b546-b21f3408aa4e",
+        "chatSessionId": "sess_9d700423-f7ba-4fbc-b66a-ef1ccdb798e0",
+        "timestamp": 1791294564581
+      },
+      {
+        "executionId": "71e6ea4f-762f-44ce-b546-b21f3408aa4e",
+        "chatSessionId": "sess_9d700423-f7ba-4fbc-b66a-ef1ccdb798e0",
+        "timestamp": 1791294800596
+      }
+    ],
+    "10. Implementar la confirmación de asistencia (ConfirmarAsistencia)": [
+      {
+        "executionId": "71e6ea4f-762f-44ce-b546-b21f3408aa4e",
+        "chatSessionId": "sess_9d700423-f7ba-4fbc-b66a-ef1ccdb798e0",
+        "timestamp": 1791294815928
+      }
+    ],
+    "11. Volver a pasar el semáforo de calidad": [
+      {
+        "executionId": "71e6ea4f-762f-44ce-b546-b21f3408aa4e",
+        "chatSessionId": "sess_9d700423-f7ba-4fbc-b66a-ef1ccdb798e0",
+        "timestamp": 1791295447068
+      }
+    ],
+    "9.2 Crear `casos-de-uso/consultar-reembolso.ts` con la clase `ConsultarReembolso` (constructor: `UnidadDeTrabajo`, `ProveedorPoliticaCancelacion`; comando `{ reservaId, actor, ahora }`) y exportarla en `reservas/index.ts`": [
+      {
+        "executionId": "caf6d29b-758c-42b8-82be-867e2184afe0",
+        "chatSessionId": "sess_9d700423-f7ba-4fbc-b66a-ef1ccdb798e0",
+        "timestamp": 1791295640302
+      },
+      {
+        "executionId": "caf6d29b-758c-42b8-82be-867e2184afe0",
+        "chatSessionId": "sess_9d700423-f7ba-4fbc-b66a-ef1ccdb798e0",
+        "timestamp": 1791295851800
+      }
+    ],
+    "9.3 Crear `consultar-reembolso.test.ts` con el escenario de R6.7 (100 h → PARCIAL 15000 y almacén sin cambios), los casos TOTAL y SIN_REEMBOLSO, y los rechazos RESERVA_NO_ENCONTRADA, ACCESO_DENEGADO (otro comprador) y CANCELACION_NO_PERMITIDA (reserva no CONFIRMED y experiencia iniciada)": [
+      {
+        "executionId": "caf6d29b-758c-42b8-82be-867e2184afe0",
+        "chatSessionId": "sess_9d700423-f7ba-4fbc-b66a-ef1ccdb798e0",
+        "timestamp": 1791295857138
+      }
+    ],
+    "9.4 Agregar la Property 9 en `propiedades-reservas.test.ts`: para reservas y momentos generados con fast-check, la vista previa coincide con el reembolso de `CancelarReserva` y no modifica el almacén": [
+      {
+        "executionId": "caf6d29b-758c-42b8-82be-867e2184afe0",
+        "chatSessionId": "sess_9d700423-f7ba-4fbc-b66a-ef1ccdb798e0",
+        "timestamp": 1791295862823
+      }
+    ],
+    "9. Implementar la vista previa del reembolso (ConsultarReembolso)": [
+      {
+        "executionId": "caf6d29b-758c-42b8-82be-867e2184afe0",
+        "chatSessionId": "sess_9d700423-f7ba-4fbc-b66a-ef1ccdb798e0",
+        "timestamp": 1791295862909
+      }
+    ]
+  }
+}
