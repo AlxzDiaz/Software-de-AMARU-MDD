@@ -1,10 +1,14 @@
 # Implementation Plan
 
 > **Funcionalidad:** `reservas-cupos-cancelacion` · **Base:** [requirements.md](requirements.md) y [design.md](design.md) (ambos aprobados)
-> **Estado:** tareas 1–8 COMPLETADAS (2026-10-06: 199 pruebas en verde, 100 % de cobertura, `tsc` sin errores). Tareas 9–10 **COMPLETADAS** (2026-10-06: 214 pruebas en verde, 100 % de cobertura). Tarea 11 **PENDIENTE**: actualización de documentación.
+> **Estado:** tareas 1–8 COMPLETADAS (2026-10-06: 199 pruebas en verde, 100 % de cobertura, `tsc` sin errores). Tareas 9–11 **COMPLETADAS** (2026-10-06: 229 pruebas en verde en 15 archivos, 100 % de cobertura, `tsc` sin errores).
 > **Verificación:** `npm run typecheck` · `npm run test:coverage` (desde la raíz del repositorio)
 
-Las tareas son secuenciales: cada una se apoya solo en las anteriores. Cada tarea termina con sus pruebas en verde antes de pasar a la siguiente.
+## Overview
+
+Plan de implementación del núcleo de dominio de reservas en `packages/shared`. Las tareas son secuenciales: cada una se apoya solo en las anteriores, y termina con sus pruebas en verde antes de pasar a la siguiente.
+
+## Tasks
 
 - [x] 1. Configurar el monorepo y el paquete de dominio compartido
   - Crear `package.json` raíz con npm workspaces (`packages/*`) y scripts `test`, `test:coverage` y `typecheck`
@@ -114,7 +118,58 @@ Las tareas son secuenciales: cada una se apoya solo en las anteriores. Cada tare
   - Quitar las marcas _(pendiente)_ de design.md y actualizar el estado de requirements.md y de este archivo
   - _Requirements: RNF-R4_
 
-## Siguientes funcionalidades (fuera de este spec)
+## Task Dependency Graph
+
+```mermaid
+flowchart LR
+  T1[1. Monorepo] --> T2[2. Constantes, errores y dinero]
+  T2 --> T3[3. Modelo y puertos]
+  T3 --> T4[4. Reglas puras]
+  T3 --> T5[5. Dobles en memoria]
+  T4 --> T6[6. Casos de uso]
+  T5 --> T6
+  T6 --> T7[7. Propiedades fast-check]
+  T7 --> T8[8. Semáforo de calidad]
+  T8 --> T9[9. ConsultarReembolso]
+  T8 --> T10[10. ConfirmarAsistencia]
+  T9 --> T11[11. Semáforo final]
+  T10 --> T11
+```
+
+Las tareas 4 y 5 dependen solo de la 3, y las tareas 9 y 10 solo de la 8. Cada uno de esos pares podía ejecutarse en paralelo.
+
+Olas de ejecución: las tareas de una misma ola son independientes entre sí. Las que escriben el mismo archivo van en olas distintas: 7.1–7.4, 9.4 y 10.4 (`propiedades-reservas.test.ts`); 9.2 y 10.2 (`reservas/index.ts`).
+
+```json
+{
+  "waves": [
+    { "id": 0, "tasks": ["1"] },
+    { "id": 1, "tasks": ["2.1", "2.2", "2.3"] },
+    { "id": 2, "tasks": ["2.4", "3.1"] },
+    { "id": 3, "tasks": ["3.2"] },
+    { "id": 4, "tasks": ["4.1", "4.2", "4.3", "4.5", "5.1"] },
+    { "id": 5, "tasks": ["4.4", "4.6", "5.2"] },
+    { "id": 6, "tasks": ["5.3", "5.4"] },
+    { "id": 7, "tasks": ["6.1"] },
+    { "id": 8, "tasks": ["6.2", "6.3", "6.4", "6.5", "6.6"] },
+    { "id": 9, "tasks": ["7.1"] },
+    { "id": 10, "tasks": ["7.2"] },
+    { "id": 11, "tasks": ["7.3"] },
+    { "id": 12, "tasks": ["7.4"] },
+    { "id": 13, "tasks": ["8"] },
+    { "id": 14, "tasks": ["9.1", "10.1"] },
+    { "id": 15, "tasks": ["9.2"] },
+    { "id": 16, "tasks": ["9.3", "10.2"] },
+    { "id": 17, "tasks": ["9.4", "10.3"] },
+    { "id": 18, "tasks": ["10.4"] },
+    { "id": 19, "tasks": ["11"] }
+  ]
+}
+```
+
+## Notes
+
+Siguientes funcionalidades, fuera de este spec:
 
 - Implementar los puertos con Prisma y PostgreSQL, y agregar pruebas de integración de concurrencia real
 - Endpoints NestJS (`/api/experiences/:id/availability`, `/api/bookings`, `/api/bookings/:id/cancel`) y job programado de liberación
